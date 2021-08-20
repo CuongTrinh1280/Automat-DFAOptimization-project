@@ -1,5 +1,9 @@
 package hus.cuong.main;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.ArrayList;
 
 import hus.cuong.io.ReadAutomata;
@@ -19,7 +23,7 @@ public class DFAMinimization {
 	static ArrayList<State> listFinishState;
 	static int[][] table;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		init();
 		fillTable();
 		getListNewStates();
@@ -27,7 +31,7 @@ public class DFAMinimization {
 	}
 
 	public static void init() {
-		ReadAutomata ra = new ReadAutomata("dfa2.txt");
+		ReadAutomata ra = new ReadAutomata("dfa.txt");
 		tffOld = ra.getTfOld();
 		alphabet = ra.getAlphabet();
 		listOldState = ra.getListState();
@@ -130,7 +134,7 @@ public class DFAMinimization {
 
 	}
 
-	public static void getNewTransformFunction() {
+	public static void getNewTransformFunction() throws FileNotFoundException {
 		tffNew = new TransformFunction();
 		ArrayList<String> al = alphabet.getAlphabe();
 		for (State newState : listNewState) {
@@ -153,6 +157,9 @@ public class DFAMinimization {
 		setNewInitState();
 		setNewFinishState();
 		tffNew.setAllStatus(listNewState);
+
+		PrintStream out = new PrintStream(new FileOutputStream("file_want_to_output.txt", true), true);
+		System.setOut(out);
 		System.out.println(tffNew.toString());
 	}
 
