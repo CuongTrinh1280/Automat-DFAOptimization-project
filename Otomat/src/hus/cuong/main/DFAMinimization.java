@@ -2,7 +2,6 @@ package hus.cuong.main;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class DFAMinimization {
 	}
 
 	public static void init() {
-		ReadAutomata ra = new ReadAutomata("dfa.txt");
+		ReadAutomata ra = new ReadAutomata("dfa_input.txt");
 		tffOld = ra.getTfOld();
 		alphabet = ra.getAlphabet();
 		listOldState = ra.getListState();
@@ -158,7 +157,7 @@ public class DFAMinimization {
 		setNewFinishState();
 		tffNew.setAllStatus(listNewState);
 
-		PrintStream out = new PrintStream(new FileOutputStream("file_want_to_output.txt", true), true);
+		PrintStream out = new PrintStream(new FileOutputStream("dfa_output.txt", true), true);
 		System.setOut(out);
 		System.out.println(tffNew.toString());
 	}
