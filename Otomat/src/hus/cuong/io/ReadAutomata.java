@@ -46,7 +46,6 @@ public class ReadAutomata {
             br = new BufferedReader(new FileReader(file));
             readAutomata();
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
@@ -55,7 +54,6 @@ public class ReadAutomata {
         try {
             br = new BufferedReader(new FileReader(file));
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             System.err.println(file + "Can't read!!");
         }
     }
@@ -68,7 +66,6 @@ public class ReadAutomata {
                 allLines.add(line);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
             return allLines;
         }
@@ -77,13 +74,14 @@ public class ReadAutomata {
     }
 
     public void readAutomata() {
+
         ArrayList<String> allLines = read();
         alphabet = new Alphabet(allLines.get(0));
-//		listStatusInString = allLines.get(1).split(" ");
         initialStatus = allLines.get(1);
         finishStatus = allLines.get(2);
         listFinishState = new ArrayList<>();
         String[] sts = finishStatus.split(" ");
+
         for (String string : sts) {
             string = string.trim();
             if (string.length() > 0) {
@@ -91,6 +89,7 @@ public class ReadAutomata {
                 listFinishState.add(st);
             }
         }
+
         tfOld = new TransformFunction();
         for (int i = 3; i < allLines.size() - 1; i++) {
             String[] s = allLines.get(i).split(" ");
@@ -132,7 +131,6 @@ public class ReadAutomata {
         try {
             br.close();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             System.err.println("Can't close file reader!!");
         }
     }
