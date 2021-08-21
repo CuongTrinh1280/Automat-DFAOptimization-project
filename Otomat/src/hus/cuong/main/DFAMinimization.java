@@ -183,17 +183,17 @@ public class DFAMinimization {
 	}
 
 	public static boolean contains(ArrayList<State> listState, State st) {
-		for (int i = 0; i < listState.size(); i++) {
-			if (listState.get(i).compareTo(st) == 0)
+		for (State state : listState) {
+			if (state.compareTo(st) == 0)
 				return true;
 		}
 		return false;
 	}
 
 	public static void printTable() {
-		for (int i = 0; i < table.length; i++) {
+		for (int[] ints : table) {
 			for (int j = 0; j < table.length; j++) {
-				System.out.print(table[i][j] + "\t");
+				System.out.print(ints[j] + "\t");
 			}
 			System.out.println();
 		}
